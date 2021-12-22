@@ -1,2 +1,2 @@
 # CS312-AI-Lab
-This repo contains assignments regarding course CS312 AI lab
+This repository contains files related to Artificial Intelligence (Spring 2022).
