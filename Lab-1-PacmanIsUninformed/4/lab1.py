@@ -16,6 +16,7 @@ def moveGen(neighbourDict, node):
 
     # obstacles = {'+', '-', '|', '0'} # 0 is pre-taken-over territory, while the others are "wall".
     # node_value = outputMatrix[node[0]][node[1]]
+
     # check down
     if(i < m-1):
         down_node = fullMatrix[i + 1][j]
@@ -40,7 +41,7 @@ def moveGen(neighbourDict, node):
         if left_node != 1:
             neighbourDict.append((i , j-1))
 
-    neighbourDict = reversed(neighbourDict)
+    neighbourDict = reversed(neighbourDict) # before putting into stack, flip order for D->U->R->L priority
     return neighbourDict
     
 
@@ -78,7 +79,7 @@ def bfs(node): # node is a tuple of indices of the square
             print(len(visited))
             print(pathLength)
 
-            for i in range(0, m+1): # why m+1???
+            for i in range(0, m+1):
                 for j in range(0, n):
                     if fullMatrix[i][j] != 5:
                         print(outputMatrix[i][j], end="")
@@ -99,7 +100,7 @@ def dfs(node):
     visited = []
     stack.append(node)
     visited.append(node)
-    parentDict = {node: None}
+    parentDict = {node: None} # maintain parents of all nodes in a dictionary 
     stateNum = 0
     while stack:
         node = stack.pop()
@@ -125,7 +126,7 @@ def dfs(node):
                 stack.append(neighbour)
                 visited.append(neighbour)
 
-def dls(node, depth, steNUM):
+def dls(node, depth): # essentially the same as dfs, except we set a limit on the depth upto which we explore
     global dls_stat
     stack = []
     visited = []
@@ -140,7 +141,7 @@ def dls(node, depth, steNUM):
     global flag
     while stack:
         node = stack.pop()
-        steNUM += 1
+        
         # stateNum = stateNum + 1
         if(goalTest(node)):
             flag = True
@@ -165,16 +166,14 @@ def dls(node, depth, steNUM):
                 stack.append(neighbour)
                 visited.append(neighbour)
         dls_stat+=len(visited)
-    return steNUM
 
-def difs(node):
+def difs(node): # depth first iterated search is essentially recursive call of depth limited search, by increasing depth-limit
     depth = 0
     exp_states = 0
     global flag
     while not flag:
-        exp_states += dls(node, depth, exp_states)
-        depth += 1
-    return exp_states
+        dls(node, depth)
+        depth = depth + 1
 
 
 # stateNum = 0
@@ -214,7 +213,7 @@ for line in input_graph:
     source = (0, 0)
     depthMatrix[source[0]][source[1]] = 0
 
-    depthMatrix = (-1)*np.array(depthMatrix)
+    depthMatrix = (-1)*np.array(depthMatrix) # multiplying the matrix by a scalar for easy accessibility of depths
 
 # for each_line in fullMatrix:
 #     print(each_line)
