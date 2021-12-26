@@ -7,6 +7,8 @@ fullMatrix = []
 lnNum = 0
 colNum = 0
 depthMatrix = []
+flag = False
+stateNum = 0
 
 def moveGen(neighbourDict, node):
     i = node[0]
@@ -123,21 +125,27 @@ def dfs(node):
                 stack.append(neighbour)
                 visited.append(neighbour)
 
-
-def dls(node, depth):
+def dls(node, depth, steNUM):
+    global dls_stat
     stack = []
     visited = []
     stack.append(node)
     visited.append(node)
     parentDict = {node: None}
-    stateNum = 0
+    if(False):
+        stateNum = 0
+    # steNUM = 0
+    # global stateNum
     global depthMatrix
+    global flag
     while stack:
         node = stack.pop()
-        stateNum += 1
+        steNUM += 1
+        # stateNum = stateNum + 1
         if(goalTest(node)):
+            flag = True
             pathLength = makePath(parentDict, node)
-            print(stateNum)
+            print(dls_stat)
             print(pathLength)
             for i in range(0, m+1): # why m+1???
                 for j in range(0, n):
@@ -156,8 +164,20 @@ def dls(node, depth):
                     depthMatrix[neighbour[0]][neighbour[1]] = depthMatrix[node[0]][node[1]] + 1
                 stack.append(neighbour)
                 visited.append(neighbour)
+        dls_stat+=len(visited)
+    return steNUM
+
+def difs(node):
+    depth = 0
+    exp_states = 0
+    global flag
+    while not flag:
+        exp_states += dls(node, depth, exp_states)
+        depth += 1
+    return exp_states
 
 
+# stateNum = 0
 input_graph = sys.stdin.readlines()
 outputMatrix = []
 k = 0
@@ -201,15 +221,15 @@ for line in input_graph:
 
 m = lnNum - 1
 n = colNum - 1
-
-
+dls_stat=0
+flag = False
 
 if method == 0:
     bfs(source)
 elif method == 1:
     dfs(source)
 elif method == 2:
-    dls(source, 15)
+    difs(source)
 
 
 
