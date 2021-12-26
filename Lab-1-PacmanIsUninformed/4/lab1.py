@@ -108,7 +108,7 @@ def dfs(node):
             pathLength = makePath(parentDict, node)
             print(stateNum)
             print(pathLength)
-            for i in range(0, m+1): # why m+1???
+            for i in range(0, m+1):
                 for j in range(0, n):
                     if fullMatrix[i][j] != 5:
                         print(outputMatrix[i][j], end="")
