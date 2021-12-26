@@ -1,17 +1,14 @@
 import sys
-import numpy as np
 
 k = 0                  # to get first line as method-input
 method = 0
 fullMatrix = []
 lnNum = 0
 colNum = 0
-depthMatrix = []
 
 def moveGen(neighbourDict, node):
     i = node[0]
     j = node[1]
-
     # obstacles = {'+', '-', '|', '0'} # 0 is pre-taken-over territory, while the others are "wall".
     # node_value = outputMatrix[node[0]][node[1]]
     # check down
@@ -37,7 +34,6 @@ def moveGen(neighbourDict, node):
         left_node = fullMatrix[i][j - 1]
         if left_node != 1:
             neighbourDict.append((i , j-1))
-
     neighbourDict = reversed(neighbourDict)
     return neighbourDict
     
@@ -124,43 +120,9 @@ def dfs(node):
                 visited.append(neighbour)
 
 
-def dls(node, depth):
-    stack = []
-    visited = []
-    stack.append(node)
-    visited.append(node)
-    parentDict = {node: None}
-    stateNum = 0
-    global depthMatrix
-    while stack:
-        node = stack.pop()
-        stateNum += 1
-        if(goalTest(node)):
-            pathLength = makePath(parentDict, node)
-            print(stateNum)
-            print(pathLength)
-            for i in range(0, m+1): # why m+1???
-                for j in range(0, n):
-                    if fullMatrix[i][j] != 5:
-                        print(outputMatrix[i][j], end="")
-                    else:
-                        print(0, end="")
-                print("\n", end="")
-            break
-        neighbourDict = []
-        neighbourDict = moveGen(neighbourDict,node) # get neighbours of current state
-        for neighbour in neighbourDict:
-            if (neighbour not in visited) and (depthMatrix[neighbour[0]][neighbour[1]] <= depth): # not visited node
-                if neighbour not in list(parentDict.keys()):
-                    parentDict[neighbour] = node
-                    depthMatrix[neighbour[0]][neighbour[1]] = depthMatrix[node[0]][node[1]] + 1
-                stack.append(neighbour)
-                visited.append(neighbour)
-
 
 input_graph = sys.stdin.readlines()
 outputMatrix = []
-k = 0
 for line in input_graph:
     colNum = 0
     matrixline = []
@@ -190,11 +152,6 @@ for line in input_graph:
     outputMatrix.append(outputline)
     fullMatrix[0][0] = 0
     lnNum += 1
-    depthMatrix = fullMatrix
-    source = (0, 0)
-    depthMatrix[source[0]][source[1]] = 0
-
-    depthMatrix = (-1)*np.array(depthMatrix)
 
 # for each_line in fullMatrix:
 #     print(each_line)
@@ -202,19 +159,11 @@ for line in input_graph:
 m = lnNum - 1
 n = colNum - 1
 
-
+source = (0, 0)
 
 if method == 0:
     bfs(source)
 elif method == 1:
     dfs(source)
-elif method == 2:
-    dls(source, 15)
-
-
-
-
-
-
-
-    
+# elif method == 2:
+#     dfid(source)
