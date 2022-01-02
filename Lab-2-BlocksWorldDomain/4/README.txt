@@ -6,3 +6,6 @@
 
 - To change heuristic function in hill climbing, 
 - change lines 183 and 201
+
+- The input files for BFS are input1.txt and input3.txt
+- The input files for HC are input2.txt and input4.txt
