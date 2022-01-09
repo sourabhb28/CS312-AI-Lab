@@ -6,7 +6,7 @@ import operator # for helping to sort objects by attribute
 formula = []
 
 # zone to modify stuff, all greater than zero.
-num_clauses = 3
+num_clauses = 5
 clause_length = 3
 perturb_num = 1             # number of bits flipped at each perturbation
 bw_def = 2                  # default beam width
