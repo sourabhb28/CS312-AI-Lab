@@ -1,5 +1,9 @@
 ### IMPORTANT INFO REGARDING EXECUTION OF THE PROGRAM 4.py
 
+## NOTATION
+* v denotes the logical disjunction operator (OR)
+* ^ denotes the logical conjunciton operator (AND)
+
 ## SETUP AND EXECUTION
 1. Open 4.py in Visual Studio Code.
 2. Make sure the required modules/packages are installed.

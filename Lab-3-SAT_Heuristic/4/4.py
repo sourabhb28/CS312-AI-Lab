@@ -275,15 +275,19 @@ for clause in range(num_clauses):
 print("\nThe formula generated is: ", end="")
 line = "("
 ctr = 0
+fp = open("input.txt","w")
+
 for clause in formula:
     ctr += 1
     each_clause = " v ".join(clause)
+    fp.write("["+str(each_clause)+"]\n")
     line += (each_clause)
     if ctr == num_clauses:
         line += (")")
         break
     line += (") ^ (")
 print(line + "\n")
+
 
 # print("Pick a search algorithm from the choices:")
 # print("0: Variable Neighbourhood Descent")
