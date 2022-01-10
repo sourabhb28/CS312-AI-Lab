@@ -1,5 +1,5 @@
-[~B v ~A v C v ~D]
-[~A v ~D v ~C v ~B]
-[D v C v ~A v B]
-[C v ~D v B v A]
-[B v ~A v D v C]
+['D', '~A', '~B', 'C'],
+['~C', 'A', 'B', 'D'],
+['~C', 'D', '~A', '~B'],
+['C', '~A', 'D', 'B'],
+['~B', '~C', 'A', '~D']

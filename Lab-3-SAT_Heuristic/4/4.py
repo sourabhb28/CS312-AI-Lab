@@ -280,7 +280,6 @@ fp = open("input.txt","w")
 for clause in formula:
     ctr += 1
     each_clause = " v ".join(clause)
-    fp.write("["+str(each_clause)+"]\n")
     line += (each_clause)
     if ctr == num_clauses:
         line += (")")
@@ -288,7 +287,24 @@ for clause in formula:
     line += (") ^ (")
 print(line + "\n")
 
-
+ctr = 0
+for clause in formula:
+    ctr += 1
+    ctr2 = 0
+    fp.write("[")
+    for lit in clause:
+        ctr2 += 1
+        fp.write("\'" + str(lit) + "\'")
+        if ctr2 == clause_length:
+            break
+        else:
+            fp.write(", ")
+    if ctr == num_clauses:
+        fp.write("]\n")
+        break
+    else:
+        fp.write("],\n")
+    
 # print("Pick a search algorithm from the choices:")
 # print("0: Variable Neighbourhood Descent")
 # print("1: Beam Search")
@@ -312,9 +328,9 @@ initial_state = state([0, 0, 0, 0])
 
 print("Using Variable Neighbourhood Descent,")
 VND(initial_state)
-print("\nUsing Beam Search,")
+print("\nUsing Beam Search, (beam width = " + str(bw_def) + ")")
 beamSearch(initial_state, bw_def)
-print("\nUsing Tabu Search,")
+print("\nUsing Tabu Search, (tabu tenure = " + str(tt_def) + ")")
 tabuSearch(initial_state, tt_def)
 print("")
             
