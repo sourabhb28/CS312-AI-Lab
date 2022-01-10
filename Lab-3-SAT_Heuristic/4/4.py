@@ -8,9 +8,9 @@ num_literals = 4            # this can't be readjusted due to the nature of this
 
 # zone to modify stuff, all greater than zero.
 num_clauses = 5
-clause_length = 4
+clause_length = 2
 perturb_num = 1             # number of bits flipped at each perturbation
-bw_def = 4                  # default beam width
+bw_def = 1                  # default beam width
 tt_def = 2                  # default tabu tenure value
 allow_repetition_within = 0 # this allows terms like (A v A V ~B) to be accepted. (1 for yes/ 0 for no)
 
@@ -271,12 +271,14 @@ for clause in range(num_clauses):
 # manual formula entering zone, with some samples
 # formula = [['A', 'B', 'C'], ['A', 'B', 'D'], ['A', 'D', 'C'], ['D', 'B', 'C'], ['A', 'B', 'C']]
 # formula = [['A', 'A', 'A'], ['B', 'B', 'B'], ['B', 'B', 'C'], ['C', 'C', 'C'], ['D', 'D', 'D']]
-# formula = [['D', '~A', '~B', 'C'],
-# ['~C', 'A', 'B', 'D'],
-# ['~C', 'D', '~A', '~B'],
-# ['C', '~A', 'D', 'B'],
-# ['~B', '~C', 'A', '~D']
+# formula = [
+# ['B', '~A', '~D', 'C'],
+# ['C', 'D', '~B', 'A'],
+# ['~B', '~D', '~A', 'C'],
+# ['~D', 'A', 'C', 'B'],
+# ['A', 'C', 'B', 'D']
 # ]
+
 print("\nThe formula generated is: ", end="")
 line = "("
 ctr = 0
