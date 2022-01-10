@@ -4,15 +4,16 @@ import copy
 import operator # for helping to sort objects by attribute
 
 formula = []
+num_literals = 4            # this can't be readjusted due to the nature of this program
 
 # zone to modify stuff, all greater than zero.
 num_clauses = 5
-clause_length = 3
+clause_length = 4
 perturb_num = 1             # number of bits flipped at each perturbation
 bw_def = 2                  # default beam width
 tt_def = 2                  # default tabu tenure value
 allow_repetition_within = 0 # this allows terms like (A v A V ~B) to be accepted. (1 for yes/ 0 for no)
-num_literals = 4            # this can't be readjusted due to the nature of this program
+
 
 class state:
     def __init__(self, bitStr):
@@ -179,7 +180,7 @@ def beamSearch(initial_state, bw):
                     print(ele)
                 return True
             
-            for neighbour in moveGen(state, 1):
+            for neighbour in moveGen(state, perturb_num):
                 if not isVisited(neighbour, CLOSED, OPEN):
                     neighbour.heuristic = h_value(neighbour)
                     neighbour.parent = state
@@ -307,10 +308,10 @@ initial_state = state([0, 0, 0, 0])
 
 print("Using Variable Neighbourhood Descent,")
 VND(initial_state)
-print("Using Beam Search,")
+print("\nUsing Beam Search,")
 beamSearch(initial_state, bw_def)
-print("Using Tabu Search,")
+print("\nUsing Tabu Search,")
 tabuSearch(initial_state, tt_def)
-
+print("")
             
 
