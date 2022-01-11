@@ -39,7 +39,7 @@ def litDict(clause):
     ldict['~D'] = flipBit(clause[3])
     return ldict
 
-def isVisited(curr_state, closed, open):
+def isVisited(curr_state, closed, open): # checks if curr_state has been visited already or not
     for state in closed:
         if state.bitStr == curr_state.bitStr:
             return True
@@ -48,7 +48,7 @@ def isVisited(curr_state, closed, open):
             return True
     return False
 
-def isExplored(curr_state, closed):
+def isExplored(curr_state, closed): # checks if curr_state has been explored already or not
     for state in closed:
         if state.bitStr == curr_state.bitStr:
             return True
@@ -63,13 +63,10 @@ def h_value(state):
         for i in range(clause_length):
             c_sum = c_sum or lDict[clause[i]]
         clause_value = clause_value + c_sum
-
-        # clause_value = clause_value + (lDict[clause[0]] or lDict[clause[1]] or lDict[clause[2]])
     return clause_value
 
 def goalTest(state):
-    if state.heuristic == num_clauses:
-        # goal state is when all clauses are satisfied
+    if state.heuristic == num_clauses: # goal state is when all clauses are satisfied
         return True
     else:
         return False
@@ -85,7 +82,7 @@ def moveGen(curr_state, perturb_num, tt = None):
                 if state_copy.ttAtState[bitIndex] == 0:
                     state_copy.bitStr[bitIndex] = flipBit(state_copy.bitStr[bitIndex])
                     state_copy.ttAtState[bitIndex] = tt # once flipped, reset tabu tenure to max tt
-                    otherIndices = []
+                    otherIndices = []                   # to decrement non-zero tt of other indices
                     for index in all_indices:
                         if index not in [bitIndex]:
                             otherIndices.append(index)
@@ -105,29 +102,29 @@ def moveGen(curr_state, perturb_num, tt = None):
             neighbours.append(state_copy)
         return neighbours
 
-def backTrack(path, curr_state):
+def backTrack(path, curr_state): # to baktrack during output
     path.append(curr_state.bitStr)
     if curr_state.parent == None:
         return
     else:
         backTrack(path, curr_state.parent)
 
-def flipBit(num):
+def flipBit(num): # to flip a bit
     return 1 - num
 
-def neg(literal): # does this work
+def neg(literal): # negates a literal
     if literal[0] == '~':
         return literal[1]
     else:
         return '~' + literal
 
-def isTautology(full_clause):
+def isTautology(full_clause): # checks if a clause is a tautology
     for l in full_clause:
         if neg(l) in full_clause:
             return True
     return False
 
-def isDuplicate(new_clause):
+def isDuplicate(new_clause): # checks if a clause has already been used in the formula
     for clause in formula:
         if clause == new_clause:
             return True
@@ -160,7 +157,7 @@ def VND(initial_state):
             next_state.append(maxima)          # set maximum heuristic valued state
         
         if maxima == last_state:
-            l = min(4, l+1)                    # set denser neighbourhood function
+            l = min(4, l + 1)                  # set wider neighbourhood
         
 
 def beamSearch(initial_state, bw):
