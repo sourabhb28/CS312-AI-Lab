@@ -268,13 +268,13 @@ for clause in range(num_clauses):
 # manual formula entering zone, with some samples
 # formula = [['A', 'B', 'C'], ['A', 'B', 'D'], ['A', 'D', 'C'], ['D', 'B', 'C'], ['A', 'B', 'C']]
 # formula = [['A', 'A', 'A'], ['B', 'B', 'B'], ['B', 'B', 'C'], ['C', 'C', 'C'], ['D', 'D', 'D']]
-formula = [
-['~D', 'B', 'A'],
-['D', 'B', '~A'],
-['B', 'D', 'C'],
-['~D', '~C', 'B'],
-['A', 'C', 'D']
-]
+# formula = [
+# ['~D', 'B', 'A'],
+# ['D', 'B', '~A'],
+# ['B', 'D', 'C'],
+# ['~D', '~C', 'B'],
+# ['A', 'C', 'D']
+# ]
 
 print("\nThe formula generated is: ", end="")
 line = "("
