@@ -7,8 +7,8 @@ formula = []
 num_literals = 4            # this can't be readjusted due to the nature of this program
 
 # zone to modify stuff, all greater than zero.
-num_clauses = 5
-clause_length = 3
+num_clauses = 15
+clause_length = 4
 perturb_num = 1             # number of bits flipped at each perturbation
 bw_def = 2                  # default beam width
 tt_def = 3                  # default tabu tenure value
@@ -126,7 +126,7 @@ def isTautology(full_clause): # checks if a clause is a tautology
 
 def isDuplicate(new_clause): # checks if a clause has already been used in the formula
     for clause in formula:
-        if clause == new_clause:
+        if set(clause) == set(new_clause):
             return True
     return False
 
