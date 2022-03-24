@@ -112,8 +112,8 @@ def next_city(tour, N, city_matrix, phero_matrix, alpha, beta):
 
 
 # --------------------------------MAIN PROGRAM BEGINS HERE--------------------------------
-# file = open(str(sys.argv[1]), "r")
-file = open("euc_250", "r")
+file = open(str(sys.argv[1]), "r")
+# file = open("test-cases/euc_250", "r")
 
 # line 1: type of tsp; euclidean or non-euclidean
 tsp_type = str(file.readline().strip())
