@@ -2,7 +2,7 @@
 
 * After extracting these files, open bash in the same directory folder that these files are in
 * This program was created in python3, hence the bash shell file is coded as such.
-* Type into bash terminal: """bash run.sh <file-name>""" , where <filename> is the name of the input file, e.g. euc_100
+* Type into bash terminal: ```bash run.sh <file-name>``` , where <filename> is the name of the input file, e.g. euc_100
 
 
 * The program is set to stop after 250 seconds from the start OR after 600 iterations of ACO.
