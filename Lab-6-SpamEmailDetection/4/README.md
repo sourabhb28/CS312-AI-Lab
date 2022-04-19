@@ -2,7 +2,7 @@
 
 1. After extracting these files, ensure that the following is true:
     - spambase.data is in the same directory/folder as 4.py.
-    - sklearn and pandas are installed on your system. If not installed, use """pip install <package-name>""".
+    - sklearn and pandas are installed on your system. If not installed, use ``` pip install <package-name> ``` .
     - Then, the code can be run in different settings, as explained below.
 
 2. To use one specific pair of kernel and c-value: (using function want_spec())
